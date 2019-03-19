@@ -1,0 +1,72 @@
+四、es6模块化
+
+1. 新建一个js文件， mod1.js,一个js文件就是一个模块
+2. 再新建一个js文件，index.js,这个js作用是建立入口文件来引用其它js，例如mod1.js。
+  2.1 在index.js中引入mod1.js ： import * as mod1 from 'mod1.js'; alert(mod1.a);
+3. 因为浏览器不支持这种打包方式，所以要借助第三方工具：webpack
+  3.1 下载安装webpack  
+  npm i webpack -g 
+  npm i webpack-cli -g 
+  如果不能执行webpack命令，还需要执行：npm link webpack， 安装完成后开始对webpack进行配置。
+  3.2  新建一个webpack.config.js文件，对它进行配置
+  3.3  在命令行运行webpack 命令。
+  E:\wamp\www\kkb\2-object\moudule>webpack
+    Hash: 35c36c53c08c40aa2e98
+    Version: webpack 4.29.6
+    Time: 80ms
+    Built at: 2019-03-09 15:12:51
+      Asset       Size  Chunks             Chunk Names
+    build.js  989 bytes       0  [emitted]  main
+    Entrypoint main = build.js
+    [0] ./mod1.js 11 bytes {0} [built]
+    [1] ./index.js 49 bytes {0} [built]
+
+  总结一下：  mod1.js 是一个一个的js文件， index.js 是个模块化入口，他把所有的像mod1.js等等的文件全部包含在一起，供webpack.config.js文件进行调用。 而webpack.config.js 本身是node.js中的一个模块，想使用它必须按照一定的格式参数进行配置。
+  const path = require('path');
+  module.exports={
+      mode:'production', //选择模式，有生产模式和开发模式， devlop:开发模式
+      entry:'./index.js', //声明哪个是入口文件,注意一定要有./
+      output:{ //输出环境配置，一定是个对象
+          path:path.resolve(__dirname,'./build'), //输出到哪个目录，此路径必须是绝对路径
+          filename:'build.js' //输出的文件名也就是编译后js文件名叫什么
+      } 
+  }
+  如果webpack执行且生成成功了build.js文件，那么在html文件中，应该直接去引用这个build.js文件进行调用。需要注意的是在mod1.js文件中的let a= 12; 要修改成export let a = 12;
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  exports简介：
+     export let a = xx;  连定义再输出
+     export const a =xx; 定义一个常量
+  先定义，再输出:
+     let a = 12;
+     let b = 5;
+     let c = 99;
+     export{a,b,c};
+  还可以定义方法和对象;
+  export function sum(x,y) {
+    return x+y;
+  }
+  export class Person{
+      constructor(name,age){
+          this.name = name;
+          this.age = age;
+      }
+      show(){
+          alert(this.name);
+          alert(this.age);
+      }
+  }
+  还可以定义默认:
+  export default 'aaa';
+  从另一个模块导出：
+  export * from './mod1';
+  export {x,x,x,x,...,x} from './mod1';
+  export {default} from './mod1';
+
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 定义import
+    import * as mod from 'xxx.js'; //引入所有的
+    import {a,b,c,...} from './mod1'; //可选择性的引入
+    import xxx from './mod1'; //引入默认的 default
+    import './1.jpg'; import '1.css'; // 模块的代码引进来，不引入内部成员
+    let promise = import("./mod1");实际写时：import('./bild/mod2').then(mod2=>{},err=>{})  //异步引入
+    

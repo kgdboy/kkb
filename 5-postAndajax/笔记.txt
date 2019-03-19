@@ -1,0 +1,53 @@
+
+1. 如何生成package.json
+作用：可以在script中写一些脚本，方便命令调用。也可以声明一些依赖，例如koa
+运行 npm init (npm init -y 一切都按默认值)
+    package name: (5-postandajax)
+    version: (1.0.0)
+    description:
+    entry point: (index.js)
+    test command:
+    git repository:
+    keywords:
+    author: Mark
+    license: (ISC)
+    About to write to E:\wamp\www\kkb\5-postAndajax\package.json:
+
+    {
+    "name": "5-postandajax",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Mark",
+    "license": "ISC"
+    }
+
+    此时就可以在当前目录下生成一个package.json
+    如果安装了cnpm，就运行cnpm init -y.也会生成package.json且在这个文件里会自动生成很多依赖。
+
+    2. 如何搜索包  https://npmjs.com
+    3. 如何安装包 npm i koa -S(-S-D) 
+    -D 开发依赖，
+    -S-D 是生产依赖
+    4. 从本机环境迁移到生产环境时，不要把mode_modules文件带走，只需将 package.json文件复制走，然后执行 cnpm i 命令，他们自动在文件里找有哪些文件依赖。
+
+    "koa":"^2.6.1" ^代表如果koa有最新版且和2.6.1语法兼容，就下载最新的，如果不加^代表，我只要 2.6.1 这个版本。如果想要最新版直接写latest,可能会遇到不兼容情况。一般加^.
+
+    5.有哪些包管理器？
+        5.1 npm/cnpm ：后端包管理
+        5.2 yarn fackbook开发，后端包管理
+        5.3 bower：前端包管理
+            安装：  npm i bower -g
+            用法：  bower i xxx
+            安装JQ: bower i jquery
+    6. 对node包的使用最重要的
+     6.1 常用的系统包
+        assert：断言：如果符合要求就通过，如果不符合报错。转到 01-assert.js
+        path:和路径相关的操作。02-path.js
+        url:和网址有关的操作。
+        querystring:请求数据操作
+    7. POST处理文件，二进制文件  太过于繁琐，略过了，以后大多依赖框架。
+    8.   

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- 非form表单形式，使用FormData 来提交 数据 不推荐这种写法，一但表单加东西了，还得人工去append-->
+        <div id="div1"> 
+            用户: <input type="text" id="user">
+            密码：<input type="password"  id="pass">
+            文件：<input type="file" id="f1">
+            <input type="button" value="提交" id="btn1">
+        </form>
+        
+    </body>
+    
+    <script>
+        window.onload =function(){
+            let oBtn = document.querySelector("#btn1");
+            oBtn.onclick=function () {
+                // 1. 先实例化出来FormData
+                let formdata = new FormData();
+                //2. 开始向formdata中追加数据，格式是name，值。
+                formdata.append('username',document.querySelector('#user').value);
+                formdata.append('password',document.querySelector('#pass').value);
+                //操作文件时稍有不同加files和[0]
+                formdata.append('file',document.querySelector('#f1').files[0]);
+                let ajax = new XMLHttpRequest(); // 创建ajax
+                // 这里需要手工写请求类型，请求地址，不能用formdata.method
+                ajax.open('POST','http://localhost:8080',true); //直接用表单的method方法，和action方法传参。
+                ajax.send(formdata); //直接把formdata传过去
+                ajax.onreadystatechange=function () {
+                    if(ajax.readyState==4){
+                        if(ajax.status==200){
+                            alert('成功');
+                        }else{
+                            alert('失败');
+                        }
+                    }
+                };
+            }
+        }
+    
+    </script>
+</html>

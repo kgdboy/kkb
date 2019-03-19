@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script src="../jq.1.10.2.js"></script>
+    <script>
+            $(function(){
+                $("#txt").on('input',function () {
+                    $.ajax({
+                        url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su', //请求地址
+                        data:{wd:$(this).val()}, //GET的参数列表，即input输入的内容
+                        dataType:'jsonp', //规定返回类型必须是jsonp
+                        jsonp:'cb' // 回调参数的方法名，百度是cb,这是从百度地址里分析出来的。
+                    }).then(({s})=>{
+                        console.log(s);  // 提取的这个s就是返回的数据
+                    },res=>{
+                        alert('出错');  // 出错时弹出提示
+                    })
+                })
+            })
+
+        </script>
+    </head>
+    
+    <body>
+       
+        <input type="text" id="txt">
+        
+        
+      
+        <!-- 
+            百度的请求地址
+            https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=icbc&json=show
+         -->
+    </body>
+</html>

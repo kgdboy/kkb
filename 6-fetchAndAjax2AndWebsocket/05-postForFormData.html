@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- 原生写法如何提交FormData数据 -->
+        <form action="http://localhost:8080/"  method="POST" id="form1"> 
+            <!-- form表单并没有写multipart信息 -->
+            用户: <input type="text" name="user" id="user">
+            密码：<input type="password" name="pass" id="pass">
+            文件：<input type="file" name="f1" id="f1">
+            <input type="submit" value="提交">
+        </form>
+        
+    </body>
+    <script>
+        let oForm = document.querySelector('#form1');//获取这个form表单
+        oForm.onsubmit = function () {  
+            let formdata = new FormData(oForm); //创建一个FormData的实例
+            let ajax = new XMLHttpRequest(); // 创建ajax
+            ajax.open(oForm.method,oForm.action,true); //直接用表单的method方法，和action方法传参。
+            ajax.send(formdata); //直接把formdata传过去
+            ajax.onreadystatechange=function () {
+                if(ajax.readyState==4){
+                    if(ajax.status==200){
+                        alert('成功');
+                    }else{
+                        alert('失败');
+                    }
+                }
+            };
+            return false; //阻止提交 
+        };
+    </script>
+</html>

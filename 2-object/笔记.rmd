@@ -1,0 +1,54 @@
+一、如何解决ES6的兼容性（ie浏览器）：
+答：babel工具：可以将es6的语法转化为es5,它有两种形式：
+1. babel在线 <script src="text/babel"></script>
+2. 线下编译 
+    2.1 安装node.js
+    2.2 输入命令 
+    npm i @babel/core(核心文件)  @babel/cli(命令行)  @babel/preset-env -D(各兼容欲设)
+    2.4 来到当前工程目录，输入命令 npm init -y 对babel进行初始化
+    2.3 编辑脚本,可以直接输入命令： npm run build ,命令成功执行后会在当前目录下生成一个 package.json的文件，此时需要对这个文件进行配置。
+        "scripts": {
+            "build":"babel src -d dest" 
+            //build 是自定义命令的名字,等同于别名。  
+            babel: 是要运行的命令
+            src:是源js目录
+            -d 是目标目录  dest  是目标目录名
+        },
+    2.4 添加.babelrc 文件声明欲设，内容如下：
+        {
+            "presets": ["@babel/preset-env"]
+        }
+------------------------------------------------------------------------------------------------------------------------------
+二、面向对象
+有三大特性 封装、继承、多态
+关键字有 class、 extends 、super、constructor
+举例：
+class worker extends Person{
+    constructor(name,age,job){
+        super(name,age);//父类 
+        this.job = job;
+    }
+    showjob(){
+        alert(this.job);
+    }
+}
+let w = new worker("吴戈",18,'铁路职工');
+w.show();
+w.showjob();
+------------------------------------------------------------------------------------------------------------------------------
+三、闭包
+源于GC垃圾回收机制，在一个函数中，如果执行完毕，函数中的变量会被垃圾回收的，为了让它保留而不被回收，我们一直在外面套一层函数，且告诉里面的值不要删。举例：
+        <script>
+            var aBtn = document.getElementsByTagName('input');
+            for (var i = 0; i < aBtn.length; i++) {
+                (function (i) {  
+                    aBtn[i].onclick=function () {  //因为在使用不会被回收
+                    alert(i);
+                }
+                })(i)
+                
+                
+            }
+        </script>
+------------------------------------------------------------------------------------------------------------------------------
+

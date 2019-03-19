@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <input type="button" value="获取" id="btn">
+        <script>
+            /* 
+                fetch 是一个原生写法
+                1. 读取  2.提取
+            */
+            window.onload = function () {
+                let oBtn = document.getElementById('btn');
+                oBtn.onclick = async ()=>{
+                    // 获取请求信息
+                    let res = await fetch('./data/1.txt');
+                    // let res = await fetch('./data/1.json');
+                    // 解析请求信息,读取字符串时用.text()方法
+                    let str = await res.text();
+                    //  读取json信息时用json方法
+                    // let json = await res.json();
+                    // console.log(json);
+                    console.log(str);
+                    /* 
+                        获取1.txt信息：
+                            我是一个粉刷匠
+                            粉刷本领强
+                        获取1.json信息:
+                            {name: "吴戈", age: 36, sex: "男", workUnit: "中国铁路沈阳局集团有限公司锦州供电段"}
+                            age: 36
+                            name: "吴戈"
+                            sex: "男"
+                            workUnit: "中国铁路沈阳局集团有限公司锦州供电段"
+
+                    
+                    */
+                }
+            }
+        </script>
+    </body>
+</html>

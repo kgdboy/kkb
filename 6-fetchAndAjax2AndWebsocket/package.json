@@ -1,0 +1,16 @@
+{
+  "name": "6-fetchAndAjax2AndWebsocket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "03.js",
+  "dependencies": {},
+  "devDependencies": {
+    "multiparty": "^4.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

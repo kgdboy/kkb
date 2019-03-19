@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!-- 
+            场景：有三个按钮，分别绑定点击事件，点击分别弹出1，2，3
+         -->
+         <input type="button" value="aaa">
+         <input type="button" value="bbb">
+         <input type="button" value="ccc">
+         <script>
+             window.onload = function () {  
+                 var aBtn = document.getElementsByTagName('input');
+                 for(let i=0;i<aBtn.length;i++){
+                     aBtn[i].onclick=function(){
+                        alert(i);
+                     }
+                }
+             }
+            //  let array = [1,2,3,4];
+            //  alert(array_sum = (array.reduce((temp,item)=>temp+item)));
+            //  console.log(sum);
+
+            var arr = [1, 2, 3, ];
+            var item = 2;
+            
+            function remove(arr, item) {
+                newarr = [];
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i] != item) {
+                        newarr.push(arr[i]);
+                    }
+                }
+                return newarr;
+            }
+            remove(arr,item);
+            console.log(newarr);
+
+         </script>
+    </body>
+</html>

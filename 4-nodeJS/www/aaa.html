@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <script src="./jq.1.10.2.js"></script>
+    <script>
+        $(function () {
+            //注册时
+            $("#reg").click(()=>{
+                $.ajax({
+                    url:'./reg',
+                    data:{username:$("#username").val(),password:$("#pass").val()},
+                    dataType:'json'
+                }).then(json=>{
+                    if(json.error){
+                        alert(json.msg);
+                    }else{
+                        alert('注册成功');
+                    }
+                })
+            })
+            // 登录时
+            $("#login").click(()=>{
+                $.ajax({
+                    url:'./login',
+                    data:{username:$("#username").val(),password:$("#pass").val()},
+                    dataType:'json'
+                }).then(json=>{
+                    if(json.error){
+                        alert(json.msg);
+                    }else{
+                        alert('登录成功');
+                    }
+                })
+            })
+        })
+    </script>
+    <body>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <input type="text" name="username" id="username">
+        <input type="text" name="pass" id="pass">
+        <input type="button" value="注册" id='reg'>
+        <input type="button" value="登录" id='login'>
+
+        
+
+        
+    </body>
+</html>

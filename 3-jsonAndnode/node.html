@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>node.js介绍</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script>
+        /* 
+            node.js 写服务器
+            用途：
+                1. 中间层（安全性、性能、降低主服务复杂度）
+                2. 小型服务 抽奖类
+                3. 工具类开发（webpack）
+            优势：
+                1. 便于前端入手
+                2. 性能高
+                3. 利于和前端代码整合
+            环境搭建：
+                下载：https://nodejs.org/en/ 要下载最新版
+                正常安装，不能安装用管理员CMD模式安装。
+                装好node后，会自动安装npm 包管理器
+                npm： node package manager
+                由于npm服务器在国外，为了提升速度我们要换源
+                安装cnpm，是自己搭建一个包管理器，防止公司代码外泄
+                -g 参数 代表global 全局，加上之后在任何路径下都可以使用，不加则只能在当前目录使用。  
+            */
+            /* 
+                npm 命令
+                1. 安装包 npm install xxx 等同 npm i xxx
+                2. 删除包 npm uninstall xxx 等同 npm un xxx
+                3. 更新包 npm update xxx 等同 npm up xxx
+
+                cnpm 命令完全等同于npm命令。
+             */
+             /* 
+                卸载 Node 注意事项
+
+                1. 卸载node后，要去node安装目录看一下有没有node_modules，有则手动删除。
+                2. 进入当前帐户 c:/users\自己用户\node_modules目录，如果有也要删除。
+                3. 删除nodejs整个目录。
+             
+              */ 
+            /* 
+                运行nodejs程序
+                1. 进入文件目录
+                2. node x.js 
+
+             */
+            /* 
+                包
+                    1. 安装包 cnpm i xxx
+                    2. 引入包 const multer = require('multer');
+                    3. 使用包
+                系统包：
+                    http包(见http.js)
+                    1. 引入 const http=require('http');
+                    2. http.createServer(...)
+            */
+
+        </script>
+    </body>
+</html>

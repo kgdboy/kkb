@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>正则</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <input type="text" name="qq" id="qq" value="332">
+        <input type="button" value="校验" id="btn">
+        <hr>
+        <input type="text" name="pic" id="pic" value=".png">
+        <input type="button" value="校验" id="picbtn">
+        
+        <script>
+            let str = 'A2a12dfAdsfsdf';
+            console.log(str.indexOf('2'));  //找字符串 ,位置 1
+             let re0 = /a/;
+             console.log(str.search(re0)); //传入正则，返回位置2
+             /**/
+            let re = /a/i;  //i 忽略大小写
+            console.log(str.search(re)); //位置 0
+            /* 
+                小总结：
+                正则作用：匹配字符串用的
+                定界符：  /   /
+                search : 查找正则的函数，匹配的是位置。
+                选项： 
+                       i  忽略大小写
+                       g  全局匹配  所有的
+                       
+                正则的模式： 贪婪匹配
+                量词： 
+                    1. 不给量词默认为1
+                    2.  +    一次给你多个
+                    3.  {5}  一次给5个
+                    4.  ?  可以没有，最多一个。
+                量词举例： 
+                    1. {n} 某一个数，例： /a{6}/代表6个a ， /\d{11}/代表11个数字（手机号） /1\d{10}/ 以1开头，后面10个数字
+                    2. {n,m} 最少n个，最多m个，例： /\d{5,12}/ QQ号最少5个，最多12个，必须都是数字。
+                    3. {n,} 最少n个，最多不限 ,例： /\w{6,}/ 最少6位数字字母下划线最多不限。等同于"+"号
+                    4. {0,1}等同于?, 可以没有，最多一个 ,例：/\.jsx?/,可以匹配.js文件也可以匹配.jsx文件。
+                    5. 由a开头以z结尾，中间可以是任意5至18个字符  /a.{5,18}z/
+                元字符：
+                     [] 
+                        1.包含的任何一个。 /a[abc]q/  代表的是以a开头，以q结尾，中间是abc任何一个字符，不能是多个.  
+                            例：  aaq、abq、acq ,不能是abbq ×
+                        2. 范围 [a-z]字母a到z都可以，[a-z]/i 字母a-z和A-Z包含大小写，[0-9] 数字0到9，[a-z0-9]字母a到z数字0到9不需要分隔符。 [3-59]不代表3到59，而是3-5,9。
+                        3. 排除 [^a-z] 排除a到z, [^a-z0-9] 排除a到z和0-9。
+                转  义：
+                        \d  [0-9]     数字
+                        \w  [a-z0-9_] 数字字母下划线
+                        \s  所有空白 
+                        .   任意字符
+                        \D  排除0-9，相当于[^0-9]
+                        \W  相等于[a-z0-9_]
+                        \S  相等于非空白
+                修饰符：就是条件
+                        ^ :行首即开头，放在元字符晨才是排除[^]
+                        $ :行尾即结尾。
+                或运算符：  |
+            */
+           /* 
+                返回数组
+                match ： 可以把要匹配的东西拿出来，而不是位置
+
+            */
+           let str1 = "fgadsfgdsfg3423423tsfdgds2fgsdft3453245edrgf";
+           let re1 = /\d+/g; //let re1 = /\d{1,}/g;
+           let arr = str1.match(re1);  //(3) ["3423423", "2", "3453245"]
+           console.log(typeof(arr));
+           console.log('返回是数组:'+arr);
+            /* 
+                返回替换后字符串
+                replace  正则做替换
+            */
+
+            let str2 = "12312321daadsfafd2r29dsf9aA33824AAa";
+            console.log(str2.replace(/a/gi,'*')); //在str2中把a替换成*号。全局替换，不分大小写。
+            /* 
+                返回替换后字符串
+                替换所有空格
+            */
+           let str3 = "1234sdf ds f23423 sdf  23423 xdf  ";
+           console.log(str3.replace(/\s/g,''));
+
+            /* 
+                返回数组
+                返回a开头中间任意5至18位并以z结尾
+             */
+           let str4 = "add3da3323z22122zdf33aabcdefadzff";
+           console.log("返回值:"+str4.match( /(a.{5,18}z)/));
+           /* 
+                返回布尔值
+                test 正则的方法  正则.test('字符串')
+                校验一个qq号,要求5到13位纯数字，不能以0开始。
+           */
+            let oInput = document.getElementById('qq');
+            let oBtn   = document.getElementById('btn');
+            oBtn.onclick=function () {
+                let re3 = /^[1-9]\d{4,13}$/; //必须要加行首行尾
+
+                if(re3.test(oInput.value)){
+                    alert('QQ号合法');
+                }else{
+                    alert('QQ号码不合法');
+                }
+            }
+            /* 
+                匹配网址 http:// 或  https://
+             */
+
+             let re4 = /^https?:\/\//;
+
+            /* 
+                匹配0-9999的数字，不能出现小数点
+            
+             */
+             let re5 = /^[1-9]{1,4}$/
+             
+             /* 
+                匹配一个文件名是不是图片文件 引出 或 操作
+              */
+            let oPic = document.getElementById('pic');
+            let oPicBtn   = document.getElementById('picbtn');
+            oPicBtn.onclick=function () {
+                let re4 = /(\.(png|jpg|gif))$/i; //匹配图片,或运算和加括号（）提升优先级
+                if(re4.test(oPic.value)){
+                    alert('是图片');
+                }else{
+                    alert('不是图片');
+                }
+            }
+
+            /* 
+                补一个知识 
+                split(",") 以逗号做分隔压进数组
+                join("|") 以|分隔把数组解成字符串
+
+             */
+            console.log("abc,def,ghi".split(",").join(''));
+        </script>
+    </body> 
+</html>

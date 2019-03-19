@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- 表单以get方式提交,后端接收 -->
+        <form action="http://localhost:8080/aaa" method="GET">
+            <input type="text" name="username" id="username">
+            <input type="text" name="pass" id="pass">
+            <input type="submit" value="提交">
+        </form>
+
+        
+        <!-- 
+
+              HTTP协议
+              HTTP 1.0 RFC-1945 
+              HTTP 1.1 RFC-2616
+              HTTPS    RFC-2818
+              HTTP2.0  RFC-7540
+
+         -->
+        <!-- 
+            http 报文
+                头信息    header
+                内容信息  body
+        -->
+        <!-- 
+            状态码：
+
+            1xx  信息
+            2xx  成功
+            3xx  重定向
+            4xx  请求错误
+            5xx  服务器错误
+
+         -->
+         <!-- 
+             请求方式：
+             GET：URL传值，容量小于32k
+             POST：放到body里传输。容量大。
+          -->
+          <!-- 
+
+                接收浏览器的GET数据
+
+           -->
+    </body>
+</html>

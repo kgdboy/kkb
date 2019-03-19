@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>webSocket</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <!-- 
+
+            先要引入socket.io.js 文件，不建议使用相对路径
+         -->
+         <script src="http://localhost:8080/socket.io/socket.io.js"></script> 
+        <!--
+            相对实际路径为：
+        
+        <script src="./node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script> -->
+        <script>
+            /* 
+                先建立一个sock连接，告诉浏览器不是一个http请求，而是一个websocket请求，而且他自带跨域。
+            */
+            let sock = io.connect('ws://localhost:8080/');
+            //sock.emit
+            /* 
+                向服务器发送一个信息，姓名叫 aaa，有2个参数是12和5
+            */
+            sock.emit('aaa',12,5);
+            //sock.on 接收服务器的消息
+            sock.on('bbb',function (a) {
+                console.log(a);
+            })
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!-- 
+            webSocket 
+            1. 性能高
+            2. 双向通信
+
+            webSocket.io 包
+            1. 简单、方便
+            2. 兼容到IE5
+            3. 自动数据解析
+
+         -->
+    </body>
+</html>

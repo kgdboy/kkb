@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <input type="button" value="aaa">
+        <input type="button" value="bbb">
+        <input type="button" value="ccc">
+        <script>
+            var aBtn = document.getElementsByTagName('input');
+            /* for (var i = 0; i < aBtn.length; i++) {
+                (function (i) {   //闭包的写法，就是()()
+                    aBtn[i].onclick=function () {  //告诉垃圾回收机制别删，还有人用。
+                    alert(i);
+                }
+                })(i)  
+            }
+             */
+            // es6 的let 解决方法
+             for (let i = 0; i < aBtn.length; i++) {
+                aBtn[i].onclick=function () {  
+                    alert(i);
+                }
+                
+            }
+        </script>
+    </body>
+</html>

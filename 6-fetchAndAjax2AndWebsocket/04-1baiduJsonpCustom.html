@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <input type="text" name="text" id="txt">
+        
+        <script>
+            function show({s}) {  
+                console.log(s);
+            }
+            window.onload = function () {  
+                let oText = document.getElementById('txt');
+                oText.oninput = function () {  
+                    let  url = `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${this.value}&cb=show`;
+                    //创建一个script标签
+                    let  oS = document.createElement('script');
+                    // 把url赋值给script的src属笥
+                    oS.src=url;
+                    // 把oS插入到页面
+                    document.body.append(oS);
+                    //加载后就删除 
+                    document.body.removeChild(oS);
+                }
+
+            }
+
+        </script>
+        
+      
+        <!-- 
+            百度的请求地址的自定义
+            https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=icbc&json=show
+         -->
+    </body>
+</html>

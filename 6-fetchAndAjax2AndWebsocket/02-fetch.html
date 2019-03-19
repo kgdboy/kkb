@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <input type="button" value="获取图片" id="btn">
+        <img  id="img1">
+        <video id="video1" ></video>
+        <script>
+            /* 
+                02-fetch 用于获取一个二进制文件 应用于图片、视频等
+            */
+            window.onload = function () {
+                let oBtn = document.getElementById('btn');
+                let Oimg = document.getElementById('img1');
+                let Ovideo = document.getElementById('video1');
+
+                oBtn.onclick = async ()=>{
+                    // 获取请求信息
+                    let res1 = await fetch('./data/1.png');
+                    let res2 = await fetch('./data/08.mp4');
+                    // 解析请求信息,读取图片用二进制方法blob
+                    let data1 = await res1.blob();
+                    let data2 = await res2.blob();
+                    // 解析图片二进制文件需要调用URL的createObjectUrl方法，比文本和json多出一步
+                    let img  = URL.createObjectURL(data1);
+                    let video  = URL.createObjectURL(data2);
+                    // 装img标签的src
+                    Oimg.src = img;
+                    Ovideo.src = video;
+                }
+            }
+        </script>
+    </body>
+</html>

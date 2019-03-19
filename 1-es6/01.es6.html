@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title</title> <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+</head>
+<script src="data/jquery-1.10.2.min.js"></script>
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <h2 class="text">1. let 声明变量（禁止重复声明）  const 声明常量（控制修改）  支持块级作用域</h2><hr>
+        <h2 class="text">2. 作用域   块级作用域在if for里</h2><hr>
+        <h2 class="text">3. 结构赋值 let {a,b,c} = {a:12,b:23,c:44}  let [a,b,c] = [1,2,3]</h2><hr>
+        <p>1.左右两边一样。2.右边得是个东西</h2><hr>
+        <h2 class="text">4. 函数 箭头函数</h2>
+            <p>4.1 如何简写</p>
+                <p>
+                    function(参数){ }等同于（参数）=>{}
+                </p>
+                <br>
+                    4.2 如果有且只有一个参数，那么（）也可以省略。
+                <br>
+                    4.3 如果有且只有一个语句（必须是return），那么 {} 也可以省略。
+                <br>
+                4.4 let sum = (a,b)=>{return a+b};//定义一个方法使用箭头函数实现 <br>
+                    let sum2 = (a,b)=>a+b; //对于上面的语句如何简写：只有一条语句可以省略 {return } <br>
+                    let obj = ()=>({"name":"吴戈","age":36}); //当返回的是一个对象时要加括号（） <br>
+                4.5 修改this（可以牢牢绑住this）
+        </h2><hr>
+        <h2>参数展开</h2>
+        <p>1. 剩余参数  ...arr相等于 [1,2,3,4,5] </p>
+        <p>2. 展开数组  相当于合并数组：[...arr1,...arr2]; </p><hr>
+        <h2>系统对象</h2>
+        <p>1. array</p>
+           <p>1.1 map 映射 1对1</p> <p>1.2 reduce 减少</p>  <p>1.3 foreach 循环</p>   <p>1.4 filter 过滤</p>
+           <p>
+                1.1.1 给出8组数，找出对应的true或false值，判断是否大于60分。<br>
+                <span style="color:red;">let res = arrscore.map(item => item>60);</span>
+           </p>
+           <p>(8) [65, 42, 45, 88, 43, 92, 57, 76]</p>
+           <p>(8) [true, false, false, true, false, true, false, true]</p>
+        <p>1.3.1 foreach 循环数组：</p>
+        <p>arrscore.forEach((item,index) => {
+                console.log('第'+index+'个是：'+item);
+                <br> 
+                console.log(`第${index}个是：${item}`);   //不用+号做连接符，而是用${}
+            });</p>
+        <p>1.4.1 filter 过滤</p>
+        <p>
+            filter 过滤数组中能被2且能被3整除的数，只保留偶数<br>
+            console.log(arrscore.filter(item=>item%2==0 && item%3==0));
+        </p>
+        <p>1.2.2 reduce 减少 多对一的关系,具体看源码</p>
+            
+        <p>2. String</p>
+        <p>2.1 字符串模板</p>
+        <p>2.2 startWith 以什么开头</p>
+        <p>2.3 endsWith  以什么结尾</p>
+        <p>3. JSON</p>
+        <p>3.1 标准写法</p>
+        <p>{"key":"123","key2":123}</p>
+        <p>3.2 JSON对象</p>
+        <p>3.2.1 不进行传输时可以 {key:123,key2:'123'}</p>
+        <p>3.2.1 传输时必须要转成标准JSON格式：JSON.stringify(json) 转变成标准格式</p>
+    <script>
+      
+
+
+        // let a =1;
+        // let a =2;
+        // alert(a); //报错
+        // const aa = 2; //常量不能被更改
+        // aa=3;
+        
+       //-----
+       let {a,b,c} = {a:12,b:23,c:44};
+       let [x,y,z] = [1,2,3];
+       console.log(a,b,c);
+       console.log(x,y,z); 
+       wg(3);
+       function wg(params) {
+        //    console.log(params);
+       }
+       /***
+        * window.onload=function(){
+           alert(3);
+       }*/
+    //    window.onload=()=>{alert(3)}
+       /* 弹出鼠标坐标，正常写法
+       document.onclick = function (ev) {  
+           alert(ev.clientX+","+ev.clientY);
+       }*/
+       /* 弹出鼠标坐标，箭头→函数写法
+       document.onclick = (ev)=>{
+        alert(ev.clientX+","+ev.clientY);
+       }*/
+       /* 弹出鼠标坐标，箭头→函数简写法
+       document.onclick = ev=>{
+        alert(ev.clientX+","+ev.clientY);
+       }*/
+       //正常箭头函数写法
+       let sum = (a,b)=>{return a+b};
+    //    {}中只有一句话并是return语句时，可以省略{}和return
+       let sum2 = (a,b)=>a+b;
+
+       let obj = ()=>({"name":"吴戈","age":36});
+
+       class Obj{
+           constructor(a,b){
+               this.a = a;
+               this.b = b;
+           }
+           show2 = ()=>{  //如果用箭头函数声明，this就是自身也就是obj。如果用普通写法就是document
+               console.log(this);
+               console.log(this.a+this.b);
+           }
+       }
+
+        let json = {
+           a:12,
+           b:5,
+           show: () => {  
+               console.log(this); //把this绑在window上，因为json是在window下声明的
+               console.log(this.a+this.b);
+           }
+       } 
+       json.show();
+       document.onclick =json.show;
+       document.onclick = new Obj(12,5).show2;
+       
+
+    //    function cout(a,b,c,d,e){
+    //        return (a+b+c+d+e);
+    //    }
+       /**剩余参数举例*/
+       /* function cout(a,b,c,...arr){
+           console.log(a,b,c,arr);
+       } 
+       console.log(cout(1,2,3,4,5,6,7,8,9,0)); //1 2 3 (7) [4, 5, 6, 7, 8, 9, 0] */
+
+       /* 
+            设计一个方法，计算某数组的元素之和 (传统方法和简单方法)
+       */
+      let arr = [1,2,3,4,5]; //等价于 ...arr
+      function jsarr (a,b,c,d,e){
+          return a+b+c+d+e;
+      }
+      console.log(jsarr(arr[0],arr[1],arr[2],arr[3],arr[4],arr[5])); //传统方法太麻烦,看下面的方法更简单
+      console.log(jsarr(...arr)); // 简单方法
+
+      /* 
+          将两个数组合并
+      */
+      let arr1 = [1,2,3];
+      let arr2 = [4,5,6];
+
+      let arr3 = [...arr1,...arr2];
+
+      console.log(arr3);
+      /* 
+        map的用法，一对一映射
+        有8个人的成绩，用8个true/false 来对应是否及格
+      */
+
+      let arrscore = [65,42,45,88,43,92,57,76];
+      /* 
+      let res2 = arrscore.map( function (item,index) {  
+          if(item>60){
+              return true;
+          }else{
+              return false;
+          }
+      }) */
+      //简写1：
+    /* let res = arrscore.map( function (item,index) {  
+          return item>60;
+      }) 
+      //简写2：
+       let res = arrscore.map(item => item>=60);
+      console.log(arrscore);
+      console.log(res);
+      arrscore.forEach((item,index) => {
+          console.log('第'+index+'个是：'+item);
+          console.log(`第${index}个是：${item}`);
+      });*/
+      
+      /* 
+            filter 过滤数组中的奇数，只要偶数
+     
+      console.log(arrscore.filter(item=>item%2==0 && item%3==0)); */
+      /* 
+            使用reduce 进行求和
+      */
+     let rest = arrscore.reduce( (temp,item,index) =>{  
+         console.log(`第${index}次是： ${temp} + ${item}`);
+         return (temp+item);
+     })
+     console.log(rest);
+     /* 
+        使用reduce 求平均数
+     
+    let average = arrscore.reduce((temp,item,index)=>{
+        if(index<arrscore.length-1){
+            return temp+item;
+        }else{
+            return (temp+item)/arrscore.length; //最后一次不仅要做加法运算而且要除了总数来求平均
+        }
+    })
+    console.log(average);*/
+    /* 
+        判断是不是一个网址，条件是以 http或https开头
+   
+   let url = "https://www.baidu.com";
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        console.log('是网址');
+    }else{
+        console.log('不是网址');
+    } */
+    /* 
+        转换成JSON标准格式： stringify 方法
+    
+    let data = {a:1,b:3,c:'3'};
+        console.log(data);
+        data = JSON.stringify(data);
+        console.log(data);// 转换标准格式的JSON字符串 {"a":1,"b":3,"c":"3"}
+   
+    
+        从服务器取回的是JSON字符串，如果转换成JSON对象  JSON.parse
+   
+
+    let jsonstr = '{"a":123,"b":456,"c":"吴戈是一个大好人"}';
+    let jsonobj = JSON.parse(jsonstr);
+     console.log(jsonobj);
+    */
+    /* 
+        promise 的用法1
+    */
+    let p = new Promise(function (resolve,reject) {  
+        $.ajax({
+            url:'data/1.json',
+            dataType:'json',
+            success(data){
+                resolve(data);
+            },
+            error(res){
+                reject(res);
+            }
+        })
+    })
+    /* 
+        p是Promise的一个实例，它接收两个参数，一个成功，一个失败，对应上面的resolve,reject。resolve,reject 只是一个名，起什么都行。在p.then的时候写两个方法，对应着resolve和reject 的成功和失败。
+   
+    p.then(function (data) {  
+        console.log(data.a);
+        console.log('获取成功');
+    },function (res) {  
+        console.log(res);
+        console.log('获取失败');
+    }) */
+     /* 
+        promise 的用法2  Promise.all 全部发送，都成功则成功，有一个失败则全失败。data是一个数组,装有三个AJAX返回的数据。
+    
+    Promise.all([
+        $.ajax({url:'data/1.json',dataType:'json'}),
+        $.ajax({url:'data/2.json',dataType:'json'}),
+        $.ajax({url:'data/3.json',dataType:'json'}),
+    ]).then(function (data) {   //此时的data数组是三个ajax的返回值
+        let [data1,data2,data3] = data; //结构赋值
+        console.log(data1);
+        console.log(data2);
+        console.log(data3);
+    },function (res) {  
+        console.log('出错了');
+    })*/
+     /* 
+        promise 的用法3  Promise.all  通过结构赋值把data数组分解成data1,data2,data3三个数组，并且用箭头函数的方式输出结果
+   
+    Promise.all([
+        $.ajax({url:'data/1.json',dataType:'json'}),
+        $.ajax({url:'data/2.json',dataType:'json'}),
+        $.ajax({url:'data/3.json',dataType:'json'}),
+    ]).then(([data1,data2,data3]) =>console.log(data1,data2,data3),(res) =>console.log('出错了')
+    ) 
+*/
+    /* 
+        async/await 的用法（异步终极）
+    */
+
+    let show = async () =>{  
+        let data1 = await $.ajax({url:'data/1.json',dataType:'json'});
+        console.log(data1);
+        if(data1.a>20){
+            let data2 = await $.ajax({url:'data/2.json',dataType:'json'});
+            console.log(data2);
+        }else{
+            let data3 = await $.ajax({url:'data/3.json',dataType:'json'});
+            console.log(data3);
+        }
+    }
+    show();
+    
+    // let temp = $.ajax({url:'data/1.json',dataType:'json'});
+    // console.log(temp);
+    
+        
+        
+    </script>
+</body>
+
+</html>
